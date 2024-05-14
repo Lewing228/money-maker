@@ -2,13 +2,11 @@
 .food-card-container {
     width: 100%;
     height: 100%;
-    position: relative;
 }
 
 .food-card-backdrop {
     width: 320px;
     height: 473px;
-    position: absolute;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 30px;
     border: 1px solid #D6C27B;
@@ -16,25 +14,18 @@
 
 .food-card-price-container {
     width: 300px;
-    height: 60px;
-    position: absolute;
-    left: 10px;
-    top: 403px;
+    margin: auto;
 }
 
 .food-card-price {
     width: 300px;
     height: 60px;
-    position: absolute;
     background: #D9C77C;
     box-shadow: 0px 4px 5px rgba(255, 255, 255, 0.05);
     border-radius: 30px;
 }
 
 .food-card-price-text {
-    position: absolute;
-    left: 121px;
-    top: 17px;
     text-align: center;
     color: black;
     font-size: 22px;
@@ -44,12 +35,9 @@
 }
 
 .food-card-weight {
-    width: 43px;
-    height: 20px;
-    position: absolute;
-    left: 20px;
-    top: 363px;
-    text-align: center;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    text-align: left;
     color: rgba(255, 255, 255, 0.5);
     font-size: 17px;
     font-family: 'SF Pro Text', sans-serif;
@@ -58,11 +46,10 @@
 }
 
 .food-card-name {
-    width: 290px;
-    height: 23px;
-    position: absolute;
-    left: 20px;
-    top: 330px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    text-align: left;
     color: white;
     font-size: 20px;
     font-family: 'SF Pro Text', sans-serif;
@@ -73,9 +60,7 @@
 .food-card-image {
     width: 300px;
     height: 300px;
-    position: absolute;
-    left: 10px;
-    top: 10px;
+    margin-top: 10px;
     border-radius: 30px;
     background: linear-gradient(0deg, #D9D9D9 0%, #D9D9D9 100%);
 }
