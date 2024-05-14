@@ -4,7 +4,7 @@ function App() {
   return (
     <div className="App">
       <div style={{width: '100%', height: '100%', position: 'relative', background: 'white'}}>
-    <img style={{width: 706, height: 1527, left: 0, top: 0, position: 'absolute'}} src="https://via.placeholder.com/706x1527" />
+    <img style={{width: 706, height: 1527, left: 0, top: 0, position: 'absolute'}} src="https://via.placeholder.com/706x1527" alt='fff'/>
     <div style={{width: 320, height: 473, left: 360, top: 1429, position: 'absolute'}}>
         <div style={{width: 320, height: 473, left: 0, top: 0, position: 'absolute', background: 'rgba(255, 255, 255, 0.10)', borderRadius: 30, border: '1px #D6C27B solid'}} />
         <div style={{width: 300, height: 60, left: 10, top: 403, position: 'absolute'}}>
