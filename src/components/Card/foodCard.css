@@ -6,7 +6,7 @@
 
 .food-card-backdrop {
     width: 150px;
-    height: 400px;
+    height: 275px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 30px;
     border: 1px solid #D6C27B;
@@ -23,7 +23,7 @@
 .food-card-price-text {
     text-align: center;
     color: black;
-    font-size: 22px;
+    font-size: 15px;
     font-family: 'SF Pro Text', sans-serif;
     font-weight: 500;
     word-wrap: break-word;
@@ -31,22 +31,22 @@
 
 .food-card-weight {
     margin-left: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: left;
     color: rgba(255, 255, 255, 0.5);
-    font-size: 17px;
+    font-size: 10px;
     font-family: 'SF Pro Text', sans-serif;
     font-weight: 400;
     word-wrap: break-word;
 }
 
 .food-card-name {
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
     margin-left: 20px;
     text-align: left;
     color: white;
-    font-size: 20px;
+    font-size: 10px;
     font-family: 'SF Pro Text', sans-serif;
     font-weight: 400;
     word-wrap: break-word;
