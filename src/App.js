@@ -72,6 +72,7 @@ function App() {
     return (
         <div className="App">
             <div className="block_header">
+                <div className="left-placeholder"></div>
                 <img className="logo" src={logo} alt="Logo"/>
                 <div className="block_basket">
                     <svg width="30" height="30" viewBox="0 0 59 59" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -16,20 +16,27 @@ body{
 }
 
 .block_header {
-  display: flex;        /* Включаем Flexbox */
-  justify-content: space-between; /* Распределяем свободное пространство между элементами */
-  align-items: center;  /* Выравниваем элементы по центру по вертикали */
-  width: 100%;          /* Занимаем полную ширину родителя */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.left-placeholder, .block_basket {
+  flex: 1;  /* Оба занимают равное пространство для баланса */
 }
 
 .logo {
   width: 40px;
   height: 40px;
-  flex: 0 1 auto;  /* Логотип не растет и не сжимается, сохраняя свой авто размер */
-  text-align: center;
-  margin: 0 auto; /* Центрируем изображение логотипа, если оно меньше контейнера */
+  flex: 0;  /* Логотип не растет и не сжимается */
+  margin: 0 auto;  /* Центрирование логотипа */
 }
 
 .block_basket {
-  flex-grow: 0;         /* Запрещаем корзине расти, оставляя её в правой части */
+  flex: 1;  /* Дает корзине растягиваться, прижимаясь к правому краю */
+  display: flex;
+  justify-content: flex-end;  /* Выравнивание SVG элемента внутри контейнера корзины */
 }
