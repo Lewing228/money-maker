@@ -28,6 +28,42 @@ function App() {
             weight: "300 г",
             price: "400₽",
             imageUrl: burgerImage
+        },
+        {
+            name: "Вегетарианский Бургер",
+            weight: "300 г",
+            price: "400₽",
+            imageUrl: burgerImage
+        },
+        {
+            name: "Вегетарианский Бургер",
+            weight: "300 г",
+            price: "400₽",
+            imageUrl: burgerImage
+        },
+        {
+            name: "Вегетарианский Бургер",
+            weight: "300 г",
+            price: "400₽",
+            imageUrl: burgerImage
+        },
+        {
+            name: "Вегетарианский Бургер",
+            weight: "300 г",
+            price: "400₽",
+            imageUrl: burgerImage
+        },
+        {
+            name: "Вегетарианский Бургер",
+            weight: "300 г",
+            price: "400₽",
+            imageUrl: burgerImage
+        },
+        {
+            name: "Вегетарианский Бургер",
+            weight: "300 г",
+            price: "400₽",
+            imageUrl: burgerImage
         }
     ];
 
