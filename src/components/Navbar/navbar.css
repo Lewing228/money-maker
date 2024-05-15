@@ -1,0 +1,38 @@
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    font-size: 14px;
+}
+
+.active{
+    background-color: #1a1a1a;
+    border-radius: 30px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-start; /* Изменено с space-around для более тесного выравнивания */
+    overflow-x: auto; /* Включаем горизонтальный скролл */
+    white-space: nowrap; /* Гарантируем, что элементы не переносятся на новую строку */
+    width: 90%; /* Задаем ширину, обычно на всю доступную ширину родителя */
+    margin: 20px 0 10px 15px;
+    padding: 0 10px; /* Добавляем небольшой паддинг для визуального комфорта */
+}
+
+.block_nav {
+    padding: 10px 15px; /* Увеличиваем паддинг для лучшего вида кнопок */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Анимация фона */
+    display: inline-block; /* Изменяем на inline-block для правильного расположения в строке */
+}
+
+.nav_text {
+    margin: 0;
+    font-size: 16px;
+    color: #808080;
+    transition: color 0.3s ease;  /* Анимация для цвета текста */
+}
+
+.block_nav.active .nav_text {
+    color: #D6C27B;  /* Цвет текста для активного состояния */
+}

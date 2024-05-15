@@ -3,6 +3,7 @@ import FoodCard from "./components/Card/foodCard";
 import burgerImage from './images/burger.png';
 import logo from './images/logo.png';
 import React from "react";
+import Navbar from "./components/Navbar/navbar";
 
 
 function App() {
@@ -88,6 +89,7 @@ function App() {
                 </div>
 
             </div>
+            <Navbar/>
             <div className="card-container">
                 {cards.map(card => (
                     <FoodCard
