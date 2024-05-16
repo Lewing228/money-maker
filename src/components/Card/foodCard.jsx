@@ -1,8 +1,7 @@
 import React from 'react';
 import './foodCard.css';
-import Button from "../Button/button";  // Импорт стилей
 
-const FoodCard = ({ name, weight, price, imageUrl }) => {
+const FoodCard = ({ name, weight, price, imageUrl, onAddToCart}) => {
     return (
         <div className="food-card-container">
             <div className="food-card-backdrop">
@@ -10,7 +9,7 @@ const FoodCard = ({ name, weight, price, imageUrl }) => {
                 <div className="food-card-price-container">
                     <div className="food-card-name">{name}</div>
                     <div className="food-card-weight">{weight}</div>
-                    <Button price={price}/>
+                    <button className={"button"} onClick={onAddToCart}>{price}</button>
                 </div>
             </div>
         </div>

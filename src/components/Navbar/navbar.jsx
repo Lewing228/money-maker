@@ -2,31 +2,20 @@ import React, { useState } from 'react';
 import './navbar.css';
 
 const Navbar = () => {
-    const [activeIndex, setActiveIndex] = useState(0);  // 0 означает, что первый элемент активен изначально
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const handleClick = index => {
-        setActiveIndex(index);  // Обновляем активный индекс при клике
+        setActiveIndex(index);
     };
 
     return (
-        <div>
-            <div className="navbar">
-                <div className={`block_nav ${activeIndex === 0 ? 'active' : ''}`} onClick={() => handleClick(0)}>
-                    <p className="nav_text">Популярное</p>
+        <div className="navbar">
+            {["Популярное", "Салаты", "Закуски", "Супы", "Десерты"].map((text, index) => (
+                <div className={`block_nav ${activeIndex === index ? 'active' : ''}`} onClick={() => handleClick(index)} key={index}>
+                    <p className="nav_text">{text}</p>
                 </div>
-                <div className={`block_nav ${activeIndex === 1 ? 'active' : ''}`} onClick={() => handleClick(1)}>
-                    <p className="nav_text">Салаты</p>
-                </div>
-                <div className={`block_nav ${activeIndex === 2 ? 'active' : ''}`} onClick={() => handleClick(2)}>
-                    <p className="nav_text">Закуски</p>
-                </div>
-                <div className={`block_nav ${activeIndex === 3 ? 'active' : ''}`} onClick={() => handleClick(3)}>
-                    <p className="nav_text">Супы</p>
-                </div>
-                <div className={`block_nav ${activeIndex === 4 ? 'active' : ''}`} onClick={() => handleClick(4)}>
-                    <p className="nav_text">Десерты</p>
-                </div>
-            </div>
+            ))}
+            <div className="highlight" style={{ transform: `translateX(${activeIndex * 100}%)` }}></div>
         </div>
     );
 };

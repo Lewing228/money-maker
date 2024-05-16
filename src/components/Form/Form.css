@@ -1,0 +1,37 @@
+/* Form.css */
+.form-container {
+    background-color: #1a1a1a; /* Dark background color */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Padding around the form */
+    border: 1px solid #D6C27B; /* Border color */
+    width: 90%; /* Width of the form */
+    margin: 20px auto; /* Center the form */
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Space between groups */
+}
+
+.form-icon {
+    height: 17px; /* Fixed height for the icon */
+    color: #d9c77c; /* Icon color */
+    margin-right: 10px; /* Space between icon and input */
+}
+
+input[type="text"] {
+    background: none; /* Transparent background */
+    border: none; /* No border */
+    border-bottom: 1px solid #D6C27B; /* Bottom border color */
+    color: rgba(255, 255, 255, 0.30); /* Text color */
+    flex: 1; /* Take remaining space */
+    padding: 5px 0; /* Padding inside input */
+    font-size: 14px; /* Font size */
+}
+
+input[type="text"]:focus {
+    outline: none; /* Remove outline on focus */
+    border-bottom: 1px solid #f1e6b2; /* Bottom border color on focus */
+    color: #D6C27B;
+}
