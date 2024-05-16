@@ -13,12 +13,12 @@ function App() {
     const location = useLocation();
 
     const cards = [
-        { id: 1, name: "Чизбургер", weight: "310 г", price: "430₽", imageUrl: burgerImage },
-        { id: 2, name: "Двойной Бургер", weight: "500 г", price: "530₽", imageUrl: burgerImage },
-        { id: 3, name: "Фиш Бургер", weight: "350 г", price: "450₽", imageUrl: burgerImage },
-        { id: 4, name: "Вегетарианский Бургер", weight: "300 г", price: "400₽", imageUrl: burgerImage },
-        { id: 5, name: "Гамбургер", weight: "300 г", price: "400₽", imageUrl: burgerImage },
-        { id: 6, name: "Fishбургер", weight: "300 г", price: "400₽", imageUrl: burgerImage }, // Ensure unique id
+        { id: 1, name: "Чизбургер", weight: "310 г", price: "430", imageUrl: burgerImage },
+        { id: 2, name: "Двойной Бургер", weight: "500 г", price: "530", imageUrl: burgerImage },
+        { id: 3, name: "Фиш Бургер", weight: "350 г", price: "450", imageUrl: burgerImage },
+        { id: 4, name: "Вегетарианский Бургер", weight: "300 г", price: "400", imageUrl: burgerImage },
+        { id: 5, name: "Гамбургер", weight: "300 г", price: "400", imageUrl: burgerImage },
+        { id: 6, name: "Fishбургер", weight: "300 г", price: "400", imageUrl: burgerImage }, // Ensure unique id
     ];
 
     return (
@@ -63,7 +63,7 @@ function App() {
                                 id={card.id}
                                 name={card.name}
                                 weight={card.weight}
-                                price={card.price}
+                                price={`${card.price}₽`}
                                 imageUrl={card.imageUrl}
                                 onAddToCart={() => addToCart(card)}
                             />

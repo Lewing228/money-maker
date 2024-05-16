@@ -20,6 +20,8 @@ const CartPage = () => {
         }
     };
 
+    const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+
     return (
         <div className="cart-page">
             <div className="block_header">
@@ -51,7 +53,7 @@ const CartPage = () => {
                                     <div className="description-item-block">
                                         <h5 className="item-title">{item.name}</h5>
                                         <div className="description">
-                                            <p className="item-price">{item.price}</p>
+                                            <p className="item-price">{`${item.price}₽`}</p>
                                             <p className="item-weight">{item.weight}</p>
                                         </div>
                                     </div>
@@ -70,7 +72,7 @@ const CartPage = () => {
                 )}
             </div>
             <Form />
-            <Button/>
+            <Button price={`${totalPrice}₽`} label="Заказать" />
         </div>
     );
 };
