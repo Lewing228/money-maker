@@ -1,4 +1,9 @@
 /*Обнуление*/
+@font-face {
+  font-family: 'SF Pro Text'; /* Гарнитура шрифта */
+  src: url('SF pro/SFProText-Medium.ttf'); /* Путь к файлу со шрифтом */
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -27,23 +32,12 @@ aside {
 }
 html,
 body {
+  font-family: 'SF Pro Text', sans-serif;
+  font-weight: 500;
   height: 100%;
   font-size: 100%;
   line-height: 1;
-  font-size: 14px;
-  -ms-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  font-family: "Raleway";
-  font-style: normal;
-  font-weight: bold;
   cursor: default;
-  font-family: 'Montserrat', sans-serif;
-}
-input,
-button,
-textarea {
-  font-family: inherit;
 }
 input::-ms-clear {
   display: none;
@@ -93,8 +87,8 @@ body{
 .card-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Создаём две колонки с равным распределением пространства */
-  grid-gap: 20px; /* Отступы между карточками */
-  padding: 20px; /* Отступ вокруг контейнера с карточками */
+  grid-gap: 5px; /* Отступы между карточками */
+  padding: 17px; /* Отступ вокруг контейнера с карточками */
 }
 
 .block_header {
@@ -118,9 +112,7 @@ body{
 }
 
 .block_basket {
-  flex: 1;  /* Дает корзине растягиваться, прижимаясь к правому краю */
-  display: flex;
-  justify-content: flex-end;  /* Выравнивание SVG элемента внутри контейнера корзины */
+  text-align: end;
 }
 
 .cart-quantity {
@@ -136,4 +128,14 @@ body{
   justify-content: center;
   align-items: center;
   font-size: 12px;
+}
+
+
+/* App.css or a global CSS file */
+.link-reset {
+  text-decoration: none;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
 }

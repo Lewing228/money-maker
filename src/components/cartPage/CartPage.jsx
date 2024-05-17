@@ -2,22 +2,33 @@ import React from 'react';
 import { useCart } from './CartContext';
 import './CartPage.css';
 import logo from "../../images/logo.png";
-import { Link } from "react-router-dom";
+import {Link, Route, Routes} from "react-router-dom";
 import Counter from "../Counter/Counter";
 import Form from "../Form/Form";
 import Button from "../Button/button";
+import FoodCard from "../Card/foodCard";
+import Product from "../Product/Product";
+import burgerImage from "../../images/burger.png";
 
 const CartPage = () => {
+
     const { cartItems, addToCart, removeFromCart } = useCart();
+    const cards = [
+        { id: 1, name: "Чизбургер", weight: "310 г", description:"Котлета, Булка, Помидор, Лук", price: "430", imageUrl: burgerImage },
+        { id: 2, name: "Двойной Бургер", weight: "500 г",description:"Котлета, Булка, Помидор, Лук",  price: "530", imageUrl: burgerImage },
+        { id: 3, name: "Фиш Бургер", weight: "350 г",description:"Котлета, Булка, Помидор, Лук",  price: "450", imageUrl: burgerImage },
+        { id: 4, name: "Вегетарианский Бургер", weight: "300 г",description:"Котлета, Булка, Помидор, Лук",  price: "400", imageUrl: burgerImage },
+        { id: 5, name: "Гамбургер", weight: "300 г",description:"Котлета, Булка, Помидор, Лук",  price: "400", imageUrl: burgerImage },
+        { id: 6, name: "Fishбургер", weight: "300 г",description:"Котлета, Булка, Помидор, Лук",  price: "400", imageUrl: burgerImage },
+    ];
+
 
     const handleIncrease = (item) => {
         addToCart(item);
     };
 
     const handleDecrease = (item) => {
-        if (item.quantity > 1) {
-            removeFromCart(item.id, 1);
-        }
+        removeFromCart(item.id);
     };
 
     const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -43,7 +54,7 @@ const CartPage = () => {
 
             <div className="cart">
                 {cartItems.length === 0 ? (
-                    <p>Your cart is empty</p>
+                    <p>Корзина пуста!</p>
                 ) : (
                     <div className="cart-items">
                         {cartItems.map(item => (
@@ -58,7 +69,6 @@ const CartPage = () => {
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="counter-block">
                                     <Counter
                                         quantity={item.quantity}
@@ -72,7 +82,31 @@ const CartPage = () => {
                 )}
             </div>
             <Form />
-            <Button price={`${totalPrice}₽`} label="Заказать" />
+            <Button size='new-size' price={`${totalPrice}₽`} label="Заказать"/>
+            <div className="recomended">
+                <div className="title-rec">
+                    <h2>Попробуйте также</h2>
+                </div>
+                <Routes className="link-reset">
+                <Route path="/" element={
+                    <div className="card-container">
+                        {cards.map(card => (
+                            <FoodCard
+                                key={card.id}
+                                id={card.id}
+                                name={card.name}
+                                weight={card.weight}
+                                price={card.price}
+                                imageUrl={card.imageUrl}
+                                onAddToCart={() => addToCart(card)}
+                            />
+                        ))}
+                    </div>
+                } />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/product/:id" element={<Product />} />
+                </Routes>
+            </div>
         </div>
     );
 };

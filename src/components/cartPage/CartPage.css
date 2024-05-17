@@ -2,7 +2,9 @@
     color: white;
     margin-top: 30px;
 }
-
+.button.new-size{
+    height: 61px;
+}
 .cart-item-block {
     display: flex;
     align-items: center;
@@ -44,4 +46,22 @@
 
 .counter-block{
     width: 90px;
+}
+
+.left-placeholder{
+    text-align: start;
+}
+
+.recomended{
+    color: white;
+    margin-top: 100px;
+}
+
+.title-rec{
+    margin-left: 61px;
+    text-align: start;
+}
+
+.button.new-size{
+    width: 90%;
 }
