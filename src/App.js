@@ -49,7 +49,7 @@ function App() {
                     <Navbar />
                 </>
             )}
-            <Routes className="link-reset">
+            <Routes >
                 <Route path="/" element={
                     <div className="card-container">
                         {cards.map(card => (
