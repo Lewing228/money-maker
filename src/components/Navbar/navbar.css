@@ -20,7 +20,7 @@
     overflow-x: auto; /* Enable horizontal scrolling */
     white-space: nowrap; /* Ensure items don't wrap to a new line */
     margin: 20px 0 10px 15px;
-    padding: 0 10px; /* Add padding for visual comfort */
+    padding: 20px 10px; /* Add padding for visual comfort */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: Add a subtle shadow */
     background-color: rgb(0,0,0);
     scrollbar-width: none; /* Firefox */
