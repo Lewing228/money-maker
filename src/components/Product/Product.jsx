@@ -10,11 +10,16 @@ import Button from "../Button/button";
 import FoodCard from "../Card/foodCard";
 import CartPage from "../cartPage/CartPage";
 import Carousel from "../Carousel/Carousel";
+import salad from "../../images/salad.png";
+import soap from "../../images/soap.png";
+import poke from "../../images/poke.png";
+import meat from "../../images/meat.png";
+import toast from "../../images/toast.png";
 
 const Product = () => {
     const { id } = useParams();
     const { addToCart, cartItems} = useCart();
-    const [localQuantity, setLocalQuantity] = useState(0);
+    const [localQuantity, setLocalQuantity] = useState(1);
 
     const handleIncrease = () => {
         setLocalQuantity(prevQuantity => prevQuantity + 1);
@@ -28,17 +33,17 @@ const Product = () => {
         if (localQuantity > 0) {
             const product = products.find(product => product.id === parseInt(id));
             addToCart({ ...product, quantity: localQuantity });
-            setLocalQuantity(0); // Reset local quantity
+            setLocalQuantity(1); // Reset local quantity
         }
     };
 
     const products = [
-        { id: 1, name: "Чизбургер", weight: "310 г", description: "Котлета, Булка, Помидор, Лук", price: "430", imageUrl: burgerImage },
-        { id: 2, name: "Двойной Бургер", weight: "500 г", description: "Котлета, Булка, Помидор, Лук", price: "530", imageUrl: burgerImage },
-        { id: 3, name: "Фиш Бургер", weight: "350 г", description: "Котлета, Булка, Помидор, Лук", price: "450", imageUrl: burgerImage },
-        { id: 4, name: "Вегетарианский Бургер", weight: "300 г", description: "Котлета, Булка, Помидор, Лук", price: "400", imageUrl: burgerImage },
-        { id: 5, name: "Гамбургер", weight: "300 г", description: "Котлета, Булка, Помидор, Лук", price: "400", imageUrl: burgerImage },
-        { id: 6, name: "Fishбургер", weight: "300 г", description: "Котлета, Булка, Помидор, Лук", price: "400", imageUrl: burgerImage },
+        { id: 1, name: "Чизбургер", weight: "310 г", description:"Котлета, булка, помидор, лук", price: "430", imageUrl: burgerImage },
+        { id: 2, name: "Цезарь с курицей", weight: "190 г",description:"Льстья салата, курица, помидор, яйцо",  price: "230", imageUrl: salad },
+        { id: 3, name: "Сырный крем-суп", weight: "220 г",description:"Сыр, крем, суп",  price: "440", imageUrl: soap },
+        { id: 4, name: "Поке с лососем", weight: "270 г",description:"Помидоры, кукуруза, дольки лосося, капуста",  price: "380", imageUrl: poke },
+        { id: 5, name: "Ассорти из шашлыка", weight: "450 г",description:"Баранина, утка, антрекот, свинина",  price: "930", imageUrl: meat },
+        { id: 6, name: "Тосты", weight: "190 г",description:"Голубика, банан, тосты",  price: "220", imageUrl: toast },
     ];
 
     const product = products.find(product => product.id === parseInt(id));

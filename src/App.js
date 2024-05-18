@@ -2,6 +2,11 @@
 import './App.css';
 import FoodCard from "./components/Card/foodCard";
 import burgerImage from './images/burger.png';
+import poke from './images/poke.png';
+import salad from './images/salad.png';
+import soap from './images/soap.png';
+import meat from './images/meat.png';
+import toast from './images/toast.png';
 import logo from './images/logo.png';
 import React from "react";
 import { Link, Route, Navigate, Routes, useLocation } from "react-router-dom";
@@ -15,12 +20,12 @@ function App() {
     const location = useLocation();
 
     const cards = [
-        { id: 1, name: "Чизбургер", weight: "310 г", description:"Котлета, Булка, Помидор, Лук", price: "430", imageUrl: burgerImage },
-        { id: 2, name: "Двойной Бургер", weight: "500 г",description:"Котлета, Булка, Помидор, Лук",  price: "530", imageUrl: burgerImage },
-        { id: 3, name: "Фиш Бургер", weight: "350 г",description:"Котлета, Булка, Помидор, Лук",  price: "450", imageUrl: burgerImage },
-        { id: 4, name: "Вегетарианский Бургер", weight: "300 г",description:"Котлета, Булка, Помидор, Лук",  price: "400", imageUrl: burgerImage },
-        { id: 5, name: "Гамбургер", weight: "300 г",description:"Котлета, Булка, Помидор, Лук",  price: "400", imageUrl: burgerImage },
-        { id: 6, name: "Fishбургер", weight: "300 г",description:"Котлета, Булка, Помидор, Лук",  price: "400", imageUrl: burgerImage },
+        { id: 1, name: "Чизбургер", weight: "310 г", description:"Котлета, булка, помидор, лук", price: "430", imageUrl: burgerImage },
+        { id: 2, name: "Цезарь с курицей", weight: "190 г",description:"Льстья салата, курица, помидор, яйцо",  price: "230", imageUrl: salad },
+        { id: 3, name: "Сырный крем-суп", weight: "220 г",description:"Сыр, крем, суп",  price: "440", imageUrl: soap },
+        { id: 4, name: "Поке с лососем", weight: "270 г",description:"Помидоры, кукуруза, дольки лосося, капуста",  price: "380", imageUrl: poke },
+        { id: 5, name: "Ассорти из шашлыка", weight: "450 г",description:"Баранина, утка, антрекот, свинина",  price: "930", imageUrl: meat },
+        { id: 6, name: "Тосты", weight: "190 г",description:"Голубика, банан, тосты",  price: "220", imageUrl: toast },
     ];
     const shouldShowHeaderAndNavbar = !['/cart', '/product'].some(path => location.pathname.startsWith(path));
     return (
