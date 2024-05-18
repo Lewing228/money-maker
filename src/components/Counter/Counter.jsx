@@ -1,3 +1,4 @@
+// Counter.js
 import React from 'react';
 import './Counter.css';
 

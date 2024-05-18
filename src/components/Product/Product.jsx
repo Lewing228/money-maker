@@ -1,6 +1,6 @@
 // Product.js
-import React from 'react';
-import {Link, Route, Routes, useParams} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, Route, Routes, useParams } from 'react-router-dom';
 import { useCart } from '../cartPage/CartContext';
 import './Product.css';
 import burgerImage from "../../images/burger.png";
@@ -9,30 +9,39 @@ import Counter from "../Counter/Counter";
 import Button from "../Button/button";
 import FoodCard from "../Card/foodCard";
 import CartPage from "../cartPage/CartPage";
+import Carousel from "../Carousel/Carousel";
 
 const Product = () => {
     const { id } = useParams();
-    const { addToCart, cartItems, removeFromCart} = useCart();
-    const handleIncrease = (item) => {
-        addToCart(item);
+    const { addToCart, cartItems} = useCart();
+    const [localQuantity, setLocalQuantity] = useState(0);
+
+    const handleIncrease = () => {
+        setLocalQuantity(prevQuantity => prevQuantity + 1);
     };
 
-    const handleDecrease = (item) => {
-        removeFromCart(item.id);
+    const handleDecrease = () => {
+        setLocalQuantity(prevQuantity => Math.max(prevQuantity - 1, 0));
+    };
+
+    const handleAddToCart = () => {
+        if (localQuantity > 0) {
+            const product = products.find(product => product.id === parseInt(id));
+            addToCart({ ...product, quantity: localQuantity });
+            setLocalQuantity(0); // Reset local quantity
+        }
     };
 
     const products = [
-        { id: 1, name: "Чизбургер", weight: "310 г", description:"Котлета, Булка, Помидор, Лук", price: "430", imageUrl: burgerImage },
-        { id: 2, name: "Двойной Бургер", weight: "500 г",description:"Котлета, Булка, Помидор, Лук",  price: "530", imageUrl: burgerImage },
-        { id: 3, name: "Фиш Бургер", weight: "350 г",description:"Котлета, Булка, Помидор, Лук",  price: "450", imageUrl: burgerImage },
-        { id: 4, name: "Вегетарианский Бургер", weight: "300 г",description:"Котлета, Булка, Помидор, Лук",  price: "400", imageUrl: burgerImage },
-        { id: 5, name: "Гамбургер", weight: "300 г",description:"Котлета, Булка, Помидор, Лук",  price: "400", imageUrl: burgerImage },
-        { id: 6, name: "Fishбургер", weight: "300 г",description:"Котлета, Булка, Помидор, Лук",  price: "400", imageUrl: burgerImage },
+        { id: 1, name: "Чизбургер", weight: "310 г", description: "Котлета, Булка, Помидор, Лук", price: "430", imageUrl: burgerImage },
+        { id: 2, name: "Двойной Бургер", weight: "500 г", description: "Котлета, Булка, Помидор, Лук", price: "530", imageUrl: burgerImage },
+        { id: 3, name: "Фиш Бургер", weight: "350 г", description: "Котлета, Булка, Помидор, Лук", price: "450", imageUrl: burgerImage },
+        { id: 4, name: "Вегетарианский Бургер", weight: "300 г", description: "Котлета, Булка, Помидор, Лук", price: "400", imageUrl: burgerImage },
+        { id: 5, name: "Гамбургер", weight: "300 г", description: "Котлета, Булка, Помидор, Лук", price: "400", imageUrl: burgerImage },
+        { id: 6, name: "Fishбургер", weight: "300 г", description: "Котлета, Булка, Помидор, Лук", price: "400", imageUrl: burgerImage },
     ];
 
     const product = products.find(product => product.id === parseInt(id));
-    const cartItem = cartItems.find(item => item.id === product.id);
-    const quantity = cartItem ? cartItem.quantity : 0;
     if (!product) {
         return <p>Product not found</p>;
     }
@@ -73,7 +82,7 @@ const Product = () => {
                 </div>
             </div>
             <div className="block_product">
-                <img src={product.imageUrl} alt={product.name} width='90%' />
+                <Carousel images={[product.imageUrl, burgerImage, burgerImage]}/>
                 <div className="block-text-product">
                     <p className='description-product'>{product.description}</p>
                     <div className="product-info">
@@ -87,10 +96,10 @@ const Product = () => {
                     </div>
                 </div>
                 <div className="product-buttons">
-                    <Counter counterProduct='counter-product' quantity={quantity}
-                             onIncrease={() => handleIncrease(product)}
-                             onDecrease={() => handleDecrease(product)}/>
-                    <Button label='Добавить' size='product-btn' classLabel='new-label'/>
+                    <Counter counterProduct='counter-product' quantity={localQuantity}
+                             onIncrease={handleIncrease}
+                             onDecrease={handleDecrease}/>
+                    <Button label='Добавить' size='product-btn' classLabel='new-label' onClick={handleAddToCart}/>
                 </div>
             </div>
             <div className="recomended">
