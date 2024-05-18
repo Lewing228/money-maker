@@ -3,6 +3,10 @@
   font-family: 'SF Pro Text'; /* Гарнитура шрифта */
   src: url('SF pro/SFProText-Medium.ttf'); /* Путь к файлу со шрифтом */
 }
+@font-face {
+  font-family: 'SF Pro Text regular'; /* Гарнитура шрифта */
+  src: url('SF pro/SFProText-Regular.ttf'); /* Путь к файлу со шрифтом */
+}
 
 * {
   padding: 0;

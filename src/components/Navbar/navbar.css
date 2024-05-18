@@ -9,14 +9,27 @@
     border-radius: 30px;
 }
 
+/* navbar.css */
 .navbar {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensure it stays on top of other content */
     display: flex;
-    justify-content: flex-start; /* Изменено с space-around для более тесного выравнивания */
-    overflow-x: auto; /* Включаем горизонтальный скролл */
-    white-space: nowrap; /* Гарантируем, что элементы не переносятся на новую строку */
+    justify-content: flex-start; /* Changed from space-around for tighter alignment */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Ensure items don't wrap to a new line */
     margin: 20px 0 10px 15px;
-    padding: 0 10px; /* Добавляем небольшой паддинг для визуального комфорта */
+    padding: 0 10px; /* Add padding for visual comfort */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: Add a subtle shadow */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
+
+.navbar::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
 
 .block_nav {
     padding: 10px 15px; /* Увеличиваем паддинг для лучшего вида кнопок */

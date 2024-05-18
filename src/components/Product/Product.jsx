@@ -73,7 +73,7 @@ const Product = () => {
                 </div>
             </div>
             <div className="block_product">
-                <img src={product.imageUrl} alt={product.name} width='90%'/>
+                <img src={product.imageUrl} alt={product.name} width='90%' />
                 <div className="block-text-product">
                     <p className='description-product'>{product.description}</p>
                     <div className="product-info">
