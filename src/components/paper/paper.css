@@ -1,0 +1,26 @@
+.paper_img img{
+    width: 50px;
+
+}
+
+.paper_block{
+    display: flex;
+    justify-content: space-between;
+    background-color: #ADD8E6;
+    width: 70%;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 10px;
+    padding: 10px;
+    align-items: center;
+}
+
+.paper_main_block{
+    display: flex;
+    align-items: center;
+    text-align: start;
+}
+
+.block-paper{
+    margin-left: 10px;
+}

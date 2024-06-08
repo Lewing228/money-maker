@@ -1,0 +1,10 @@
+.footer_main_block{
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin: auto;
+    margin-top: 30px;
+    background-color: #ADD8E6;
+    border-radius: 10px;
+    padding: 10px;
+}

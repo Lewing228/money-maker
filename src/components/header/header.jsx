@@ -1,36 +1,35 @@
-// Button.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './header.css';
-import { useEffect, useState } from "react";
-
+import burger from '../../images/burger.png'
+import medal from '../../images/medal.png'
 const Header = () => {
     const [appData, setAppData] = useState(null);
-    let avatar = appData?.chat?.photo_url;
-    let name = appData?.user?.first_name
+    const avatar = appData?.user?.photo_url;
+    const name = appData?.user?.first_name;
+
     useEffect(() => {
         const fetchAppData = async () => {
             if (window.Telegram && window.Telegram.WebApp) {
                 const app = window.Telegram.WebApp;
                 await app.ready();
+                console.log('App data:', app.initDataUnsafe); // Логирование данных
                 setAppData(app.initDataUnsafe);
             }
         };
         fetchAppData();
     }, []);
-        const app = window.Telegram.WebApp;
-        app.ready();
-        console.log(appData)
+
     return (
-        <div>
-            <div className="header">
-                <div className="avatar">
-                    <img src={avatar} alt="image_user" />
-                </div>
-                <div className='block-naame'>
-                <p className='name'>{avatar}</p>
-                    <p className='name'>{name}</p>
-                    <p>Leaderboard</p>
-                </div>
+        <div className="header">
+            <div className="avatar"> 
+                    <img src={avatar} alt="User Avatar" />
+            </div>
+            <div className="block-name">
+                <p className="name">{name ? name : "Unknown User"}</p>
+                <p className='leaderboard'>Leaderboard</p>
+            </div>
+            <div className="medal"> 
+                    <img src={medal} alt="medal" />
             </div>
         </div>
     );

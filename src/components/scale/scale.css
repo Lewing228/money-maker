@@ -1,0 +1,19 @@
+.scale{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.mainScale{
+    width: 230px;
+    background-color: rgba(219, 219, 219, 0.614);
+    border-radius: 10px;
+    height: 30px;
+}
+
+.safe img{
+    width: 50px;
+}
