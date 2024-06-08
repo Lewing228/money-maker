@@ -17,14 +17,16 @@ const Header = () => {
         };
         fetchAppData();
     }, []);
+    const app = window.Telegram.WebApp;
+    console.log('App data:', app.initDataUnsafe); 
     return (
         <div>
             <div className="header">
                 <div className="avatar">
-                    <img src={avatar} alt="logo" />
+                    <img src={avatar} alt="image_user" />
                 </div>
                 <div className='block-naame'>
-                <p className='name'>{avatar}</p>
+                <p className='name'>{app.initDataUnsafe}</p>
                     <p className='name'>{name}</p>
                     <p>Leaderboard</p>
                 </div>
