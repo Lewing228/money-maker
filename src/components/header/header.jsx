@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 const Header = () => {
     const [appData, setAppData] = useState(null);
-    let avatar = appData?.user?.photo_url;
+    let avatar = appData?.chat?.photo_url;
     let name = appData?.user?.first_name
     useEffect(() => {
         const fetchAppData = async () => {
@@ -19,7 +19,7 @@ const Header = () => {
     }, []);
         const app = window.Telegram.WebApp;
         app.ready();
-        console.log('App data:', app.initDataUnsafe); 
+        console.log('App data:', app); 
     return (
         <div>
             <div className="header">
