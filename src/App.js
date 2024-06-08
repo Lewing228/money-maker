@@ -1,9 +1,8 @@
-// App.js
 import './App.css';
 import React from "react";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+
 function App() {
-    const app = window.Telegram?.WebApp;
     const [appData, setAppData] = useState(null);
 
     useEffect(() => {
@@ -13,9 +12,10 @@ function App() {
                 await app.ready(); // Убедитесь, что app готов перед обращением к initDataUnsafe
                 setAppData(app.initDataUnsafe);
             }
-        }
+        };
         fetchAppData();
     }, []);
+
     return (
         <div className="App">
             <header className="App-header">
@@ -28,7 +28,7 @@ function App() {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-
+                    Learn React
                 </a>
                 <div>{appData?.user?.first_name}</div>
                 <div>{appData?.chat?.id}</div>
