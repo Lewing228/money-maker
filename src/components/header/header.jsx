@@ -19,7 +19,7 @@ const Header = () => {
     }, []);
         const app = window.Telegram.WebApp;
         app.ready();
-        console.log('App data:', app); 
+        console.log(appData)
     return (
         <div>
             <div className="header">
