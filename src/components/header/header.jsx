@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './header.css';
-import burger from '../../images/burger.png'
 import medal from '../../images/medal.png'
 const Header = () => {
     const [appData, setAppData] = useState(null);
