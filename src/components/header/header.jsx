@@ -25,7 +25,7 @@ const Header = () => {
                 </div>
                 <div className='block-naame'>
                     <p className='name'>{name}</p>
-                    <a href="#" onClick={e => e.preventDefault()}>Leaderboard</a>
+                    <p>Leaderboard</p>
                 </div>
             </div>
         </div>
