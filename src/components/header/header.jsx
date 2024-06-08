@@ -17,8 +17,9 @@ const Header = () => {
         };
         fetchAppData();
     }, []);
-    const app = window.Telegram.WebApp;
-    console.log('App data:', app.initDataUnsafe); 
+        const app = window.Telegram.WebApp;
+        app.ready();
+        console.log('App data:', app.initDataUnsafe); 
     return (
         <div>
             <div className="header">
@@ -26,7 +27,7 @@ const Header = () => {
                     <img src={avatar} alt="image_user" />
                 </div>
                 <div className='block-naame'>
-                <p className='name'>{app.initDataUnsafe}</p>
+                <p className='name'>{avatar}</p>
                     <p className='name'>{name}</p>
                     <p>Leaderboard</p>
                 </div>
