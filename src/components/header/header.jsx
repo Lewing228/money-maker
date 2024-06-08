@@ -24,6 +24,7 @@ const Header = () => {
                     <img src={avatar} alt="logo" />
                 </div>
                 <div className='block-naame'>
+                <p className='name'>{avatar}</p>
                     <p className='name'>{name}</p>
                     <p>Leaderboard</p>
                 </div>
