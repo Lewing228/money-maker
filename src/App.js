@@ -6,14 +6,13 @@ function App() {
     // const app = window.Telegram?.WebApp; // Оставляем переменную закомментированной, если она не используется
     const [appData, setAppData] = useState(null);
     var search = window.Telegram?.WebApp.initData
-    var converted = JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}', function(key, value) { return key===""?value:decodeURIComponent(value) })
-    console.log(converted)
+    console.log(search)
 
     useEffect(() => {
         const fetchAppData = async () => {
             if (window.Telegram && window.Telegram.WebApp) {
                 const app = window.Telegram.WebApp;
-                await app.ready(); // Убедитесь, что app готов перед обращением к initDataUnsafe
+                await app.ready();
                 setAppData(app.initDataUnsafe);
             }
         };
