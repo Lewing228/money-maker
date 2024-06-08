@@ -1,28 +1,38 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+// App.js
 import './App.css';
-
+import React from "react";
+import {useEffect, useState} from "react";
 function App() {
-    const [user, setUser] = useState(null);
+    const app = window.Telegram?.WebApp;
+    const [appData, setAppData] = useState(null);
 
     useEffect(() => {
-        axios.get('/api/user')
-            .then(response => {
-                setUser(response.data);
-            })
-            .catch(error => {
-                console.error('There was an error fetching the user data!', error);
-            });
+        const fetchAppData = async () => {
+            if (window.Telegram && window.Telegram.WebApp) {
+                const app = window.Telegram.WebApp;
+                await app.ready(); // Убедитесь, что app готов перед обращением к initDataUnsafe
+                setAppData(app.initDataUnsafe);
+            }
+        }
+        fetchAppData();
     }, []);
-
-    if (!user) {
-        return <div>Loading...</div>;
-    }
-
     return (
         <div className="App">
-            <h1>Welcome, {user.username}!</h1>
-            <img src={user.avatarUrl} alt={`${user.username}'s avatar`} />
+            <header className="App-header">
+                <p>
+                    Edit <code>src/App.js</code> and save to reload.
+                </p>
+                <a
+                    className="App-link"
+                    href="https://reactjs.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                </a>
+                <div>{appData?.user?.first_name}</div>
+                <div>{appData?.chat?.id}</div>
+            </header>
         </div>
     );
 }
