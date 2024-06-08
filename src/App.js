@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 function App() {
     // const app = window.Telegram?.WebApp; // Оставляем переменную закомментированной, если она не используется
     const [appData, setAppData] = useState(null);
+    console.log(appData)
 
     useEffect(() => {
         const fetchAppData = async () => {
