@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 function App() {
+    // const app = window.Telegram?.WebApp; // Оставляем переменную закомментированной, если она не используется
     const [appData, setAppData] = useState(null);
 
     useEffect(() => {
