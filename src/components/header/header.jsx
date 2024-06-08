@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 
 const Header = () => {
     const [appData, setAppData] = useState(null);
-    let avatar = appData?.user?.avatar;
+    let avatar = appData?.user?.photo_url;
     let name = appData?.user?.first_name
     useEffect(() => {
         const fetchAppData = async () => {
             if (window.Telegram && window.Telegram.WebApp) {
                 const app = window.Telegram.WebApp;
-                await app.ready(); // Убедитесь, что app готов перед обращением к initDataUnsafe
+                await app.ready();
                 setAppData(app.initDataUnsafe);
             }
         };
