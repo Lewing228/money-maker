@@ -23,9 +23,10 @@ const Casher = () => {
                 });
             }
         }, 1000); // Обновление каждую секунду
-
+    
         return () => clearInterval(interval);
-    }, [paperCount]);
+    }, [paperCount]); // Добавление paperCount в зависимости
+    
 
     useEffect(() => {
         const interval = setInterval(() => {
