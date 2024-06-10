@@ -5,7 +5,7 @@ import paper from '../../images/paper.png';
 const Paper = () => {
     const [paperCount, setPaperCount] = useState(() => {
         const savedPaperCount = localStorage.getItem('paperCount');
-        return savedPaperCount ? parseFloat(savedPaperCount) : 100;
+        return savedPaperCount ? parseFloat(savedPaperCount) : 1;
     });
     const paperUsage = 0.1; // Скорость уменьшения
 

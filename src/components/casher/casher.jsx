@@ -8,19 +8,33 @@ const Casher = () => {
         const savedCash = localStorage.getItem('cash');
         return savedCash ? parseFloat(savedCash) : 0;
     });
+
+    const [paperCount, setPaperCount] = useState(() => {
+        const savedPaperCount = localStorage.getItem('paperCount');
+        return savedPaperCount ? parseFloat(savedPaperCount) : 1;
+    });
+
     const cashSpeed = 0.1; // Скорость увеличения
+    const paperUsage = 0.1; // Скорость уменьшения бумаги
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCash(prevCash => {
-                const newCash = prevCash + cashSpeed;
-                localStorage.setItem('cash', newCash);
-                return newCash;
-            });
+            if (paperCount > 0) {
+                setCash(prevCash => {
+                    const newCash = prevCash + cashSpeed;
+                    localStorage.setItem('cash', newCash);
+                    return newCash;
+                });
+                setPaperCount(prevPaperCount => {
+                    const newPaperCount = Math.max(prevPaperCount - paperUsage, 0);
+                    localStorage.setItem('paperCount', newPaperCount);
+                    return newPaperCount;
+                });
+            }
         }, 1000); // Обновление каждую секунду
 
         return () => clearInterval(interval);
-    }, []);
+    }, [paperCount]); // Добавление paperCount в зависимости
 
     return (
         <div className="casher_block">
