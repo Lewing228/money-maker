@@ -1,6 +1,5 @@
 .paper_img img{
     width: 50px;
-
 }
 
 .paper_block{
@@ -13,6 +12,7 @@
     border-radius: 10px;
     padding: 10px;
     align-items: center;
+    font-size: 15px;
 }
 
 .paper_main_block{

@@ -8,7 +8,7 @@
 }
 
 .mainScale{
-    width: 230px;
+    width: 180px;
     background-color: rgba(219, 219, 219, 0.614);
     border-radius: 10px;
     height: 30px;
@@ -16,4 +16,10 @@
 
 .safe img{
     width: 50px;
+}
+
+.percent{
+    color: black;
+    font-size: 15px;
+    margin-left: 10px;
 }

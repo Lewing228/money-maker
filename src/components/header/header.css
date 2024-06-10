@@ -1,5 +1,5 @@
 .avatar img{
-    width: 50px;
+    width: 30px;
 
 }
 
@@ -16,14 +16,23 @@
 }
 
 .medal img{
-    width: 50px;
+    width: 30px;
     border-radius: 10x;
 }
 
 .name{
     color: black;
+    font-size: 12px;
 }
 
 .leaderboard{
     color: black;
+    font-size: 12px;
+}
+
+.avatar-block{
+    display: flex;
+    align-items: center;
+    text-align: start;
+
 }

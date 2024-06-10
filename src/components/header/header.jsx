@@ -20,12 +20,14 @@ const Header = () => {
 
     return (
         <div className="header">
+            <div className="avatar-block">
             <div className="avatar"> 
                     <img src={avatar} alt="User Avatar" />
             </div>
             <div className="block-name">
                 <p className="name">{name ? name : "Unknown User"}</p>
                 <p className='leaderboard'>Leaderboard</p>
+            </div>
             </div>
             <div className="medal"> 
                     <img src={medal} alt="medal" />
