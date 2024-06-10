@@ -1,7 +1,6 @@
 import './App.css';
 import React from "react";
 import Header from './components/header/header';
-import Scale from './components/scale/scale';
 import Casher from './components/casher/casher';
 import Paper from './components/paper/paper';
 import Footer from './components/footer/footer';
@@ -11,7 +10,6 @@ function App() {
     return (
         <div className="App">
             <Header/>
-            <Scale/>
             <Casher/>
             <Paper/>
             <Footer/>

@@ -1,4 +1,4 @@
-.scale{
+.scale {
     width: 70%;
     display: flex;
     justify-content: space-between;
@@ -7,18 +7,27 @@
     margin-top: 30px;
 }
 
-.mainScale{
+.mainScale {
     width: 180px;
     background-color: rgba(219, 219, 219, 0.614);
     border-radius: 10px;
     height: 30px;
+    position: relative;
+    overflow: hidden;
 }
 
-.safe img{
+.fill {
+    height: 100%;
+    background-color: green; /* Цвет заполнения */
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+}
+
+.safe img {
     width: 50px;
 }
 
-.percent{
+.percent {
     color: black;
     font-size: 15px;
     margin-left: 10px;
