@@ -3,12 +3,19 @@ import './paper.css';
 import paper from '../../images/paper.png';
 
 const Paper = () => {
-    const [paperCount, setPaperCount] = useState(100); // Начальное значение 100
+    const [paperCount, setPaperCount] = useState(() => {
+        const savedPaperCount = localStorage.getItem('paperCount');
+        return savedPaperCount ? parseFloat(savedPaperCount) : 100;
+    });
     const paperUsage = 0.1; // Скорость уменьшения
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setPaperCount(prevPaperCount => Math.max(prevPaperCount - paperUsage, 0)); // Убедитесь, что значение не ниже 0
+            setPaperCount(prevPaperCount => {
+                const newPaperCount = Math.max(prevPaperCount - paperUsage, 0);
+                localStorage.setItem('paperCount', newPaperCount);
+                return newPaperCount;
+            });
         }, 1000); // Обновление каждую секунду
 
         return () => clearInterval(interval);
