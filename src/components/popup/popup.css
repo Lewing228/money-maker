@@ -1,0 +1,60 @@
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup_inner {
+    position: relative;
+    padding: 20px;
+    background: #333;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+    color: white;
+}
+
+.popup_inner h2 {
+    margin-bottom: 20px;
+    color: #FFD700; /* Золотистый цвет для заголовков */
+}
+
+.popup_inner button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background: #FFD700;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.popup_inner button:hover {
+    background: #FFA500; /* Более насыщенный цвет при наведении */
+    color: white;
+}
+
+.popup_inner .close_button {
+    background: #555;
+    color: white;
+}
+
+.popup_inner .close_button:hover {
+    background: #444;
+}

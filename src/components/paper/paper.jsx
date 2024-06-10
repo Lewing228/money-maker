@@ -1,25 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './paper.css';
 import paper from '../../images/paper.png';
+import Popup from '../popup/popup';
 
-const Paper = () => {
-    const [paperCount, setPaperCount] = useState(() => {
-        const savedPaperCount = localStorage.getItem('paperCount');
-        return savedPaperCount ? parseFloat(savedPaperCount) : 1;
-    });
-    const paperUsage = 0.1; // Скорость уменьшения
+const Paper = ({ paperCount, maxPaperCount, onBuyPaper, onUpgradeMaxPaper }) => {
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setPaperCount(prevPaperCount => {
-                const newPaperCount = Math.max(prevPaperCount - paperUsage, 0);
-                localStorage.setItem('paperCount', newPaperCount);
-                return newPaperCount;
-            });
-        }, 1000); // Обновление каждую секунду
-
-        return () => clearInterval(interval);
-    }, []);
+    const togglePopup = () => {
+        setIsPopupOpen(!isPopupOpen);
+    };
 
     return (
         <div className="paper_block">
@@ -29,12 +18,13 @@ const Paper = () => {
                 </div>
                 <div className="block-paper">
                     <p className="paper_text">Paper</p>
-                    <p className='paper_buy'>Buy more</p>
+                    <p className='paper_buy' onClick={togglePopup}>Buy more</p>
                 </div>
             </div>
             <div className="paper_count"> 
-                <p className="paper_count_text">{paperCount.toFixed(1)}/100</p>
+                <p className="paper_count_text">{paperCount.toFixed(1)}/{maxPaperCount}</p>
             </div>
+            {isPopupOpen && <Popup onClose={togglePopup} onBuyPaper={onBuyPaper} onUpgradeMaxPaper={onUpgradeMaxPaper} />}
         </div>
     );
 };
