@@ -12,7 +12,7 @@ const Casher = () => {
 
     const [paperCount, setPaperCount] = useState(() => {
         const savedPaperCount = localStorage.getItem('paperCount');
-        return savedPaperCount ? parseFloat(savedPaperCount) : 1;
+        return savedPaperCount ? parseFloat(savedPaperCount) : 100;
     });
 
     const [maxPaperCount, setMaxPaperCount] = useState(() => {
