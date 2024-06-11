@@ -11,7 +11,7 @@ const Popup = ({ onClose, onBuyPaper, onUpgradeMaxPaper }) => {
     const upgradeOptions = [
         { increaseAmount: 50, cost: 10 },
         { increaseAmount: 100, cost: 20 },
-        { increaseAmount: 150, cost: 30 },
+        { increaseAmount: 200, cost: 30 },
     ];
 
     return (
@@ -35,7 +35,7 @@ const Popup = ({ onClose, onBuyPaper, onUpgradeMaxPaper }) => {
                         Увеличить хранилище на {option.increaseAmount} за {option.cost} Mg
                     </button>
                 ))}
-                <button className="close_button" onClick={onClose}>Close</button>
+                <button onClick={onClose}>Close</button>
             </div>
         </div>
     );

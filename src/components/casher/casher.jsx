@@ -67,10 +67,12 @@ const Casher = () => {
                 return newCash;
             });
             setMaxPaperCount(prevMax => {
-                const newMax = prevMax + increaseAmount; // Увеличиваем максимум на заданное количество
+                const newMax = prevMax + increaseAmount;
                 localStorage.setItem('maxPaperCount', newMax);
                 return newMax;
             });
+        } else {
+            console.log('Not enough cash to upgrade max paper.');
         }
     };
 
@@ -84,7 +86,12 @@ const Casher = () => {
             <div className='image_casher'>
                 <img src={casher} alt="casher" />
             </div>
-            <Paper paperCount={paperCount} maxPaperCount={maxPaperCount} onBuyPaper={handleBuyPaper} onUpgradeMaxPaper={handleUpgradeMaxPaper} />
+            <Paper 
+                paperCount={paperCount} 
+                maxPaperCount={maxPaperCount} 
+                onBuyPaper={handleBuyPaper} 
+                onUpgradeMaxPaper={handleUpgradeMaxPaper} 
+            />
         </div>
     );
 };

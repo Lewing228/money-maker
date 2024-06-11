@@ -1,10 +1,28 @@
-import React from 'react';
-import './friend.css';
+import React, { useState, useEffect } from 'react';
+import './friends.css';
 
-const Friends = ({ paperCount, onBuyPaper }) => {
+const Friends = ({ userId, onEarnBonus }) => {
+    const [referralLink, setReferralLink] = useState('');
+
+    useEffect(() => {
+        const storedLink = localStorage.getItem(`referralLink_${userId}`);
+        if (storedLink) {
+            setReferralLink(storedLink);
+        } else {
+            const uniqueId = userId; // Используем userId как уникальный идентификатор
+            const link = `https://t.me/ParserChat1_Bot?start=${uniqueId}`;
+            setReferralLink(link);
+            localStorage.setItem(`referralLink_${userId}`, link);
+        }
+    }, [userId]);
+
     return (
         <div className="friends_block">
-            
+            <h2>Invite Friends</h2>
+            <p>Share this link with your friends to earn bonuses:</p>
+            <div className="referral_link">
+                <a href={referralLink} target="_blank" rel="noopener noreferrer">{referralLink}</a>
+            </div>
         </div>
     );
 };
