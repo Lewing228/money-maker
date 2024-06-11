@@ -5,7 +5,6 @@ import Casher from './components/casher/casher';
 import Tasks from './components/tasks/tasks';
 import Friends from './components/friends/friends';
 import Footer from './components/footer/footer';
-import { v4 as uuidv4 } from 'uuid'; // Для генерации уникального ID
 
 function App() {
     const [activeComponent, setActiveComponent] = useState('casher');
@@ -17,11 +16,14 @@ function App() {
             if (window.Telegram && window.Telegram.WebApp) {
                 const user = window.Telegram.WebApp.initDataUnsafe.user;
                 if (user) {
-                    const referralId = uuidv4();
-                    const link = `https://t.me/ParserChat1_Bot?start=${referralId}`;
-                    setReferralLink(link);
-                    // Сохранение реферальной ссылки в localStorage
-                    localStorage.setItem('referralLink', link);
+                    fetch(`http://127.0.0.1:5000/get_referral_link?user_id=${user.id}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.referral_link) {
+                                setReferralLink(data.referral_link);
+                            }
+                        })
+                        .catch(error => console.error('Error fetching referral link:', error));
                 }
             }
         };
