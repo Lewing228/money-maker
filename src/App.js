@@ -5,11 +5,13 @@ import Casher from './components/casher/casher';
 import Tasks from './components/tasks/tasks';
 import Friends from './components/friends/friends';
 import Footer from './components/footer/footer';
+import { v4 as uuidv4 } from 'uuid'; // Для генерации уникального ID
 
 function App() {
     const [activeComponent, setActiveComponent] = useState('casher');
     const [setMg] = useState(0);
     const [userId, setUserId] = useState('');
+    const [referralLink, setReferralLink] = useState('');
 
     useEffect(() => {
         const initTelegram = () => {
@@ -17,6 +19,12 @@ function App() {
                 const user = window.Telegram.WebApp.initDataUnsafe.user;
                 if (user) {
                     setUserId(user.id);
+                    // Генерация реферальной ссылки
+                    const referralId = uuidv4();
+                    const link = `https://t.me/ParserChat1_Bot?start=${referralId}`;
+                    setReferralLink(link);
+                    // Сохранение реферальной ссылки в localStorage
+                    localStorage.setItem('referralLink', link);
                 }
             }
         };
@@ -34,7 +42,7 @@ function App() {
             case 'tasks':
                 return <Tasks onEarnMg={earnMg} />;
             case 'friends':
-                return <Friends userId={userId} onEarnBonus={earnMg} />;
+                return <Friends referralLink={referralLink} onEarnBonus={earnMg} />;
             default:
                 return <Casher />;
         }
