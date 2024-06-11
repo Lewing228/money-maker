@@ -59,15 +59,15 @@ const Casher = () => {
         }
     };
 
-    const handleUpgradeMaxPaper = (upgradeCost) => {
-        if (cash >= upgradeCost) {
+    const handleUpgradeMaxPaper = (increaseAmount, cost) => {
+        if (cash >= cost) {
             setCash(prevCash => {
-                const newCash = prevCash - upgradeCost;
+                const newCash = prevCash - cost;
                 localStorage.setItem('cash', newCash);
                 return newCash;
             });
             setMaxPaperCount(prevMax => {
-                const newMax = prevMax + 50; // Увеличиваем максимум на 50
+                const newMax = prevMax + increaseAmount; // Увеличиваем максимум на заданное количество
                 localStorage.setItem('maxPaperCount', newMax);
                 return newMax;
             });

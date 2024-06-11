@@ -9,9 +9,9 @@ const Popup = ({ onClose, onBuyPaper, onUpgradeMaxPaper }) => {
     ];
 
     const upgradeOptions = [
-        { upgradeCost: 10, newMax: 150 },
-        { upgradeCost: 20, newMax: 200 },
-        { upgradeCost: 30, newMax: 250 },
+        { increaseAmount: 50, cost: 10 },
+        { increaseAmount: 100, cost: 20 },
+        { increaseAmount: 150, cost: 30 },
     ];
 
     return (
@@ -28,14 +28,14 @@ const Popup = ({ onClose, onBuyPaper, onUpgradeMaxPaper }) => {
                 ))}
                 <h2>Upgrade Storage</h2>
                 {upgradeOptions.map(option => (
-                    <button key={option.upgradeCost} onClick={() => {
-                        onUpgradeMaxPaper(option.upgradeCost);
+                    <button key={option.increaseAmount} onClick={() => {
+                        onUpgradeMaxPaper(option.increaseAmount, option.cost);
                         onClose();
                     }}>
-                        Увеличить хранилище до {option.newMax} за {option.upgradeCost} Mg
+                        Увеличить хранилище на {option.increaseAmount} за {option.cost} Mg
                     </button>
                 ))}
-                <button onClick={onClose}>Close</button>
+                <button className="close_button" onClick={onClose}>Close</button>
             </div>
         </div>
     );
