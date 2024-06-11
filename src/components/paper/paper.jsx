@@ -3,7 +3,7 @@ import './paper.css';
 import paper from '../../images/paper.png';
 import Popup from '../popup/popup';
 
-const Paper = ({ paperCount, maxPaperCount, onBuyPaper, onUpgradeMaxPaper }) => {
+const Paper = ({ paperCount, onBuyPaper }) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
 
     const togglePopup = () => {
@@ -22,9 +22,9 @@ const Paper = ({ paperCount, maxPaperCount, onBuyPaper, onUpgradeMaxPaper }) => 
                 </div>
             </div>
             <div className="paper_count"> 
-                <p className="paper_count_text">{paperCount.toFixed(1)}/{maxPaperCount}</p>
+                <p className="paper_count_text">{paperCount.toFixed(1)}/100</p>
             </div>
-            {isPopupOpen && <Popup onClose={togglePopup} onBuyPaper={onBuyPaper} onUpgradeMaxPaper={onUpgradeMaxPaper} />}
+            {isPopupOpen && <Popup onClose={togglePopup} onBuyPaper={onBuyPaper} />}
         </div>
     );
 };
