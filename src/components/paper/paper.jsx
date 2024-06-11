@@ -18,11 +18,11 @@ const Paper = ({ paperCount, onBuyPaper }) => {
                 </div>
                 <div className="block-paper">
                     <p className="paper_text">Paper</p>
-                    <button onClick={togglePopup}>Buy more paper</button>
+                    <p className='paper_buy' onClick={togglePopup}>Buy more</p>
                 </div>
             </div>
             <div className="paper_count"> 
-                <p className="paper_count_text">{paperCount.toFixed(1)}/100</p>
+                <p className="paper_count_text">{paperCount !== undefined ? paperCount.toFixed(1) : '0.0'}/100</p>
             </div>
             {isPopupOpen && <Popup onClose={togglePopup} onBuyPaper={onBuyPaper} />}
         </div>
