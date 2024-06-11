@@ -10,7 +10,6 @@ import { v4 as uuidv4 } from 'uuid'; // Для генерации уникаль
 function App() {
     const [activeComponent, setActiveComponent] = useState('casher');
     const [setMg] = useState(0);
-    const [userId, setUserId] = useState('');
     const [referralLink, setReferralLink] = useState('');
 
     useEffect(() => {
@@ -18,8 +17,6 @@ function App() {
             if (window.Telegram && window.Telegram.WebApp) {
                 const user = window.Telegram.WebApp.initDataUnsafe.user;
                 if (user) {
-                    setUserId(user.id);
-                    // Генерация реферальной ссылки
                     const referralId = uuidv4();
                     const link = `https://t.me/ParserChat1_Bot?start=${referralId}`;
                     setReferralLink(link);

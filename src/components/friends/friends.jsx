@@ -1,5 +1,5 @@
 import React from 'react';
-import './friend.css';
+import './friends.css';
 
 const Friends = ({ referralLink, onEarnBonus }) => {
     return (
