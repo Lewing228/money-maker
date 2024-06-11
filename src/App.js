@@ -1,16 +1,37 @@
 import './App.css';
-import React from "react";
+import React, { useState } from "react";
 import Header from './components/header/header';
 import Casher from './components/casher/casher';
+import Tasks from './components/tasks/tasks';
+import Friends from './components/friends/friends';
 import Footer from './components/footer/footer';
+
 function App() {
-    // const app = window.Telegram?.WebApp; // Оставляем переменную закомментированной, если она не используется
+    const [activeComponent, setActiveComponent] = useState('casher');
+    const [mg, setMg] = useState(0);
+
+    const earnMg = (amount) => {
+        setMg(prevMg => prevMg + amount);
+    };
+
+    const renderContent = () => {
+        switch (activeComponent) {
+            case 'casher':
+                return <Casher />;
+            case 'tasks':
+                return <Tasks onEarnMg={earnMg} />;
+            case 'friends':
+                return <Friends />;
+            default:
+                return <Casher />;
+        }
+    };
 
     return (
         <div className="App">
-            <Header/>
-            <Casher/>
-            <Footer/>
+            <Header />
+            {renderContent()}
+            <Footer activeComponent={activeComponent} setActiveComponent={setActiveComponent} />
         </div>
     );
 }

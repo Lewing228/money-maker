@@ -1,10 +1,40 @@
-.footer_main_block{
+.footer_block {
+    width: 100%;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #ADD8E6; /* Updated for the footer block background */
+}
+
+.footer_main_block {
     display: flex;
     justify-content: space-around;
     width: 70%;
     margin: auto;
-    margin-top: 30px;
     background-color: #ADD8E6;
     border-radius: 10px;
     padding: 10px;
+}
+
+.footer_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 100px; /* Fixed width */
+    height: 50px; /* Fixed height */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer_item p {
+    margin: 5px 0 0 0;
+    color: #fff;
+}
+
+.footer_item.active {
+    background-color: #4ba6c5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Box-shadow for active block */
+    border-radius: 10px;
 }
