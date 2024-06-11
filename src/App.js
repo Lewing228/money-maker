@@ -8,18 +8,13 @@ import Footer from './components/footer/footer';
 
 function App() {
     const [activeComponent, setActiveComponent] = useState('casher');
-    const [mg, setMg] = useState(0);
-
-    const earnMg = (amount) => {
-        setMg(prevMg => prevMg + amount);
-    };
 
     const renderContent = () => {
         switch (activeComponent) {
             case 'casher':
                 return <Casher />;
             case 'tasks':
-                return <Tasks onEarnMg={earnMg} />;
+                return <Tasks />;
             case 'friends':
                 return <Friends />;
             default:
