@@ -3,7 +3,7 @@ import './header.css';
 import medal from '../../images/medal.png'
 const Header = () => {
     const [appData, setAppData] = useState(null);
-    const avatar = appData?.user?.photo_url;
+    const avatar = window.Telegram.WebApp.initDataUnsafe.photo_url;
     const name = appData?.user?.first_name;
 
     useEffect(() => {

@@ -15,6 +15,7 @@ function App() {
         const initTelegram = () => {
             if (window.Telegram && window.Telegram.WebApp) {
                 const user = window.Telegram.WebApp.initDataUnsafe.user;
+                
                 if (user) {
                     fetch(`http://127.0.0.1:5000/get_referral_link?user_id=${user.id}`)
                         .then(response => response.json())
