@@ -11,7 +11,6 @@ const Header = () => {
             if (window.Telegram && window.Telegram.WebApp) {
                 const app = window.Telegram.WebApp;
                 await app.ready();
-                console.log('App data:', app.initDataUnsafe); // Логирование данных
                 setAppData(app.initDataUnsafe);
             }
         };
