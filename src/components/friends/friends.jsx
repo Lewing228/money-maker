@@ -10,7 +10,7 @@ const Friends = ({ userId, onEarnBonus }) => {
             setReferralLink(storedLink);
         } else {
             const uniqueId = userId; // Используем userId как уникальный идентификатор
-            const link = `https://t.me/brrrrrgamebot?start=${uniqueId}`;
+            const link = `https://t.me/ParserChat1_Bot?start=${uniqueId}`;
             setReferralLink(link);
             localStorage.setItem(`referralLink_${userId}`, link);
         }
