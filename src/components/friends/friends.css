@@ -8,6 +8,10 @@
     text-align: center;
 }
 
+.friends_block p{
+    color: #333;
+}
+
 .referral_link {
     margin-top: 10px;
     padding: 10px;
