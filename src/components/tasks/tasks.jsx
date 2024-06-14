@@ -15,7 +15,7 @@ const Tasks = ({ mg, userId, onEarnMg }) => {
     useEffect(() => {
         const checkTasksCompletion = async () => {
             const updatedTasks = await Promise.all(tasks.map(async task => {
-                if (!task.completed && await task.check({ mg, userId, workoutsCompleted: 10, paperCount: 50 })) { // Подставьте правильные данные для проверки
+                if (!task.completed && await task.check({ mg, userId })) {
                     onEarnMg(task.reward);
                     alert(`You have earned ${task.reward} Mg for completing: ${task.description}`);
                     return { ...task, completed: true };
@@ -27,7 +27,7 @@ const Tasks = ({ mg, userId, onEarnMg }) => {
         };
 
         checkTasksCompletion();
-    }, [mg, userId, onEarnMg, tasks]);
+    }, [mg, userId, tasks, onEarnMg]);
 
     const checkSubscription = async (userId) => {
         const response = await fetch(`https://api.telegram.org/bot5817168459:AAGflot73Ojyew2N5RleJRTL0_LZEpE5EQY/getChatMember?chat_id=-1002197264277&user_id=${userId}`);
@@ -35,7 +35,6 @@ const Tasks = ({ mg, userId, onEarnMg }) => {
         return data.result && (data.result.status === 'member' || data.result.status === 'administrator' || data.result.status === 'creator');
     };
 
-    
     const handleTaskClick = async (task) => {
         if (task.completed) return;
 
