@@ -31,12 +31,19 @@ const Tasks = ({ mg, userId, onEarnMg }) => {
         return data.result && (data.result.status === 'member' || data.result.status === 'administrator' || data.result.status === 'creator');
     };
 
-    const handleTaskClick = (task) => {
+    const handleTaskClick = async (task) => {
         if (task.completed) return;
 
         if (task.id === 4) {
-            window.open('https://t.me/+VZSXmcuN3KhkODUy', '_blank');
-            alert("Please confirm your subscription to the Telegram channel.");
+            const isSubscribed = await checkSubscription(userId);
+            if (isSubscribed) {
+                const updatedTasks = tasks.map(t => t.id === task.id ? { ...t, completed: true } : t);
+                setTasks(updatedTasks);
+                onEarnMg(task.reward);
+                alert(`You have earned ${task.reward} Mg for subscribing to the Telegram channel!`);
+            } else {
+                alert("Please subscribe to the Telegram channel to earn the reward.");
+            }
         } else {
             const updatedTasks = tasks.map(t => t.id === task.id ? { ...t, completed: true } : t);
             setTasks(updatedTasks);
