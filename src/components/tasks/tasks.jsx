@@ -1,24 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './tasks.css';
 
-const Tasks = ({ paperCount, onBuyPaper, onEarnMg }) => {
+const Tasks = ({ mg, userId, onEarnMg }) => {
     const [tasks, setTasks] = useState([
-        { id: 1, description: "Complete 10 workouts", reward: 10, completed: false },
-        { id: 2, description: "Earn 100 Mg", reward: 20, completed: false },
-        { id: 3, description: "Buy 50 paper", reward: 5, completed: false },
-        { id: 4, description: "Subscribe to our Telegram channel", reward: 15, completed: false },
+        { id: 1, description: "Complete 10 workouts", reward: 10, completed: false, check: (data) => data.workoutsCompleted >= 10 },
+        { id: 2, description: "Earn 100 Mg", reward: 20, completed: false, check: (data) => data.mg >= 100 },
+        { id: 3, description: "Buy 50 paper", reward: 5, completed: false, check: (data) => data.paperCount >= 50 },
+        { id: 4, description: "Subscribe to our Telegram channel", reward: 15, completed: false, check: async (data) => await checkSubscription(data.userId) },
     ]);
 
+    useEffect(() => {
+        const checkTasksCompletion = async () => {
+            const updatedTasks = await Promise.all(tasks.map(async task => {
+                if (!task.completed && await task.check({ mg, userId })) {
+                    onEarnMg(task.reward);
+                    alert(`You have earned ${task.reward} Mg for completing: ${task.description}`);
+                    return { ...task, completed: true };
+                }
+                return task;
+            }));
+            setTasks(updatedTasks);
+        };
+
+        checkTasksCompletion();
+    }, [mg, userId, tasks, onEarnMg]);
+
+    const checkSubscription = async (userId) => {
+        const response = await fetch(`https://api.telegram.org/bot5817168459:AAGflot73Ojyew2N5RleJRTL0_LZEpE5EQY/getChatMember?chat_id=5817168459&user_id=${userId}`);
+        const data = await response.json();
+        return data.result && (data.result.status === 'member' || data.result.status === 'administrator' || data.result.status === 'creator');
+    };
+
     const handleTaskClick = (task) => {
-        if (task.completed) return; // Don't allow completed tasks to be clicked again
+        if (task.completed) return;
 
         if (task.id === 4) {
-            // Open Telegram channel and check subscription
-            window.open('https://t.me/your_channel', '_blank');
-            // Implement subscription check logic here
+            window.open('https://t.me/+VZSXmcuN3KhkODUy', '_blank');
             alert("Please confirm your subscription to the Telegram channel.");
         } else {
-            // Mark task as completed and give reward
             const updatedTasks = tasks.map(t => t.id === task.id ? { ...t, completed: true } : t);
             setTasks(updatedTasks);
             onEarnMg(task.reward);

@@ -8,14 +8,13 @@ import Footer from './components/footer/footer';
 
 function App() {
     const [activeComponent, setActiveComponent] = useState('casher');
-    const [setMg] = useState(0);
+    const [mg, setMg] = useState(0);
     const [userId, setUserId] = useState('');
 
     useEffect(() => {
         const initTelegram = () => {
             if (window.Telegram && window.Telegram.WebApp) {
                 const user = window.Telegram.WebApp.initDataUnsafe.user;
-                
                 if (user) {
                     setUserId(user.id);
                 }
@@ -33,9 +32,9 @@ function App() {
             case 'casher':
                 return <Casher />;
             case 'tasks':
-                return <Tasks onEarnMg={earnMg} />;
+                return <Tasks mg={mg} userId={userId} onEarnMg={earnMg} />;
             case 'friends':
-                return <Friends userId={userId} onEarnBonus={earnMg}  />;
+                return <Friends userId={userId} onEarnBonus={earnMg} />;
             default:
                 return <Casher />;
         }
