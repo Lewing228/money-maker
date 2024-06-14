@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import './tasks.css';
 
 const Tasks = ({ mg, userId, onEarnMg }) => {
-    const [tasks, setTasks] = useState([
-        { id: 1, description: "Complete 10 workouts", reward: 10, completed: false, check: (data) => data.workoutsCompleted >= 10 },
-        { id: 2, description: "Earn 100 Mg", reward: 20, completed: false, check: (data) => data.mg >= 100 },
-        { id: 3, description: "Buy 50 paper", reward: 5, completed: false, check: (data) => data.paperCount >= 50 },
-        { id: 4, description: "Subscribe to our Telegram channel", reward: 15, completed: false, check: async (data) => await checkSubscription(data.userId) },
-    ]);
+    const [tasks, setTasks] = useState(() => {
+        const savedTasks = localStorage.getItem('tasks');
+        return savedTasks ? JSON.parse(savedTasks) : [
+            { id: 1, description: "Complete 10 workouts", reward: 10, completed: false, check: (data) => data.workoutsCompleted >= 10 },
+            { id: 2, description: "Earn 100 Mg", reward: 20, completed: false, check: (data) => data.mg >= 100 },
+            { id: 3, description: "Buy 50 paper", reward: 5, completed: false, check: (data) => data.paperCount >= 50 },
+            { id: 4, description: "Subscribe to our Telegram channel", reward: 15, completed: false, check: async (data) => await checkSubscription(data.userId) },
+        ];
+    });
 
     useEffect(() => {
         const checkTasksCompletion = async () => {
@@ -20,6 +23,7 @@ const Tasks = ({ mg, userId, onEarnMg }) => {
                 return task;
             }));
             setTasks(updatedTasks);
+            localStorage.setItem('tasks', JSON.stringify(updatedTasks));
         };
 
         checkTasksCompletion();
@@ -39,6 +43,7 @@ const Tasks = ({ mg, userId, onEarnMg }) => {
             if (isSubscribed) {
                 const updatedTasks = tasks.map(t => t.id === task.id ? { ...t, completed: true } : t);
                 setTasks(updatedTasks);
+                localStorage.setItem('tasks', JSON.stringify(updatedTasks));
                 onEarnMg(task.reward);
                 alert(`You have earned ${task.reward} Mg for subscribing to the Telegram channel!`);
             } else {
@@ -47,6 +52,7 @@ const Tasks = ({ mg, userId, onEarnMg }) => {
         } else {
             const updatedTasks = tasks.map(t => t.id === task.id ? { ...t, completed: true } : t);
             setTasks(updatedTasks);
+            localStorage.setItem('tasks', JSON.stringify(updatedTasks));
             onEarnMg(task.reward);
             alert(`You have earned ${task.reward} Mg!`);
         }
