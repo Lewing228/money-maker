@@ -26,7 +26,7 @@ const Tasks = ({ mg, userId, onEarnMg }) => {
     }, [mg, userId, tasks, onEarnMg]);
 
     const checkSubscription = async (userId) => {
-        const response = await fetch(`https://api.telegram.org/bot5817168459:AAGflot73Ojyew2N5RleJRTL0_LZEpE5EQY/getChatMember?chat_id=5817168459&user_id=${userId}`);
+        const response = await fetch(`https://api.telegram.org/bot5817168459:AAGflot73Ojyew2N5RleJRTL0_LZEpE5EQY/getChatMember?chat_id=-1002197264277&user_id=${userId}`);
         const data = await response.json();
         return data.result && (data.result.status === 'member' || data.result.status === 'administrator' || data.result.status === 'creator');
     };
