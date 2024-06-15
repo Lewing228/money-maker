@@ -8,7 +8,7 @@ import Footer from './components/footer/footer';
 
 function App() {
     const [activeComponent, setActiveComponent] = useState('casher');
-    const [mg, setMg] = useState(0);
+    const [setMg] = useState(0);
     const [userId, setUserId] = useState('');
 
     useEffect(() => {
@@ -32,9 +32,9 @@ function App() {
             case 'casher':
                 return <Casher />;
             case 'tasks':
-                return <Tasks mg={mg} userId={userId} onEarnMg={earnMg} />;
+                return <Tasks onEarnMg={earnMg} />;
             case 'friends':
-                return <Friends userId={userId} onEarnBonus={earnMg} />;
+                return <Friends userId={userId} onEarnBonus={earnMg}  />;
             default:
                 return <Casher />;
         }
