@@ -8,7 +8,7 @@ import Footer from './components/footer/footer';
 
 function App() {
     const [activeComponent, setActiveComponent] = useState('casher');
-    const [mg, setMg] = useState(0);
+    const [setMg] = useState(0);
     const [userId, setUserId] = useState('');
 
     useEffect(() => {
@@ -24,7 +24,6 @@ function App() {
     }, []);
 
     const earnMg = (amount) => {
-        console.log(mg)
         setMg(prevMg => prevMg + amount);
     };
 
