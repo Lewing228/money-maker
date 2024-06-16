@@ -24,7 +24,7 @@ function App() {
     }, []);
 
     const earnMg = (amount) => {
-        setMg(prevMg => prevMg + amount);
+        return setMg(prevMg => prevMg + amount);
     };
 
     const renderContent = () => {
