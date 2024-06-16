@@ -8,7 +8,11 @@ import Footer from './components/footer/footer';
 
 function App() {
     const [activeComponent, setActiveComponent] = useState('casher');
-    const [setMg] = useState(0);
+    const [mg, setMg] = useState(0);
+    const [cash, setCash] = useState(() => {
+        const savedCash = localStorage.getItem('cash');
+        return savedCash ? parseFloat(savedCash) : 0;
+    });
     const [userId, setUserId] = useState('');
 
     useEffect(() => {
@@ -24,17 +28,25 @@ function App() {
     }, []);
 
     const earnMg = (amount) => {
-        return setMg(prevMg => prevMg + amount);
+        setMg(prevMg => prevMg + amount);
+    };
+
+    const earnCash = (amount) => {
+        setCash(prevCash => {
+            const newCash = prevCash + amount;
+            localStorage.setItem('cash', newCash);
+            return newCash;
+        });
     };
 
     const renderContent = () => {
         switch (activeComponent) {
             case 'casher':
-                return <Casher />;
+                return <Casher cash={cash} setCash={setCash} />;
             case 'tasks':
-                return <Tasks onEarnMg={earnMg} />;
+                return <Tasks mg={mg} userId={userId} onEarnMg={earnMg} onEarnCash={earnCash} />;
             case 'friends':
-                return <Friends userId={userId} onEarnBonus={earnMg}  />;
+                return <Friends userId={userId} onEarnBonus={earnMg} />;
             default:
                 return <Casher />;
         }

@@ -4,12 +4,7 @@ import casher from '../../images/money gun.png';
 import Scale from '../scale/scale';
 import Paper from '../paper/paper';
 
-const Casher = () => {
-    const [cash, setCash] = useState(() => {
-        const savedCash = localStorage.getItem('cash');
-        return savedCash ? parseFloat(savedCash) : 0;
-    });
-
+const Casher = ({ cash, setCash }) => {
     const [paperCount, setPaperCount] = useState(() => {
         const savedPaperCount = localStorage.getItem('paperCount');
         return savedPaperCount ? parseFloat(savedPaperCount) : 100;
@@ -40,7 +35,7 @@ const Casher = () => {
         }, 1000); // Обновление каждую секунду
 
         return () => clearInterval(interval);
-    }, [paperCount]);
+    }, [paperCount, setCash]);
 
     const handleBuyPaper = (paperAmount, cost) => {
         if (cash >= cost && paperCount + paperAmount <= maxPaperCount) {
@@ -59,18 +54,14 @@ const Casher = () => {
         }
     };
 
-    const handleUpgradeMaxPaper = (increaseAmount, cost) => {
+    const handleUpgradeMaxPaper = (newMax, cost) => {
         if (cash >= cost) {
             setCash(prevCash => {
                 const newCash = prevCash - cost;
                 localStorage.setItem('cash', newCash);
                 return newCash;
             });
-            setMaxPaperCount(prevMax => {
-                const newMax = prevMax + increaseAmount;
-                localStorage.setItem('maxPaperCount', newMax);
-                return newMax;
-            });
+            setMaxPaperCount(newMax);
         } else {
             console.log('Not enough cash to upgrade max paper.');
         }
