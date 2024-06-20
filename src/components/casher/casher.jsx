@@ -4,51 +4,69 @@ import casher from '../../images/money gun.png';
 import Scale from '../scale/scale';
 import Paper from '../paper/paper';
 
-const Casher = ({ cash, setCash }) => {
-    const [paperCount, setPaperCount] = useState(() => {
-        const savedPaperCount = localStorage.getItem('paperCount');
-        return savedPaperCount ? parseFloat(savedPaperCount) : 100;
-    });
-
-    const [maxPaperCount, setMaxPaperCount] = useState(() => {
-        const savedMaxPaperCount = localStorage.getItem('maxPaperCount');
-        return savedMaxPaperCount ? parseFloat(savedMaxPaperCount) : 100;
-    });
+const Casher = ({ userId }) => {
+    const [cash, setCash] = useState(0);
+    const [paperCount, setPaperCount] = useState(100);
+    const [maxPaperCount, setMaxPaperCount] = useState(100);
 
     const cashSpeed = 0.1; // Скорость увеличения
     const paperUsage = 0.1; // Скорость уменьшения бумаги
 
     useEffect(() => {
+        // Получение данных пользователя при загрузке компонента
+        const fetchUserData = async () => {
+            try {
+                const response = await fetch(`/api/user/${userId}`);
+                const data = await response.json();
+                setCash(data.cash);
+                setPaperCount(data.paper_count);
+                setMaxPaperCount(data.max_paper_count);
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
+
+        fetchUserData();
+    }, [userId]);
+
+    useEffect(() => {
         const interval = setInterval(() => {
             if (paperCount > 0) {
-                setCash(prevCash => {
-                    const newCash = prevCash + cashSpeed;
-                    localStorage.setItem('cash', newCash);
-                    return newCash;
-                });
-                setPaperCount(prevPaperCount => {
-                    const newPaperCount = Math.max(prevPaperCount - paperUsage, 0);
-                    localStorage.setItem('paperCount', newPaperCount);
-                    return newPaperCount;
-                });
+                setCash(prevCash => prevCash + cashSpeed);
+                setPaperCount(prevPaperCount => Math.max(prevPaperCount - paperUsage, 0));
             }
         }, 1000); // Обновление каждую секунду
 
         return () => clearInterval(interval);
-    }, [paperCount, setCash]);
+    }, [paperCount]);
+
+    useEffect(() => {
+        // Обновление данных пользователя в базе данных
+        const updateUserData = async () => {
+            try {
+                await fetch(`/api/user/${userId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        cash,
+                        paperCount,
+                        maxPaperCount,
+                    }),
+                });
+            } catch (error) {
+                console.error('Error updating user data:', error);
+            }
+        };
+
+        updateUserData();
+    }, [cash, paperCount, maxPaperCount, userId]);
 
     const handleBuyPaper = (paperAmount, cost) => {
         if (cash >= cost && paperCount + paperAmount <= maxPaperCount) {
-            setCash(prevCash => {
-                const newCash = prevCash - cost;
-                localStorage.setItem('cash', newCash);
-                return newCash;
-            });
-            setPaperCount(prevCount => {
-                const newCount = prevCount + paperAmount;
-                localStorage.setItem('paperCount', newCount);
-                return newCount;
-            });
+            setCash(prevCash => prevCash - cost);
+            setPaperCount(prevCount => prevCount + paperAmount);
         } else {
             console.log('Not enough cash to buy paper or paper count exceeds max limit.');
         }
@@ -56,11 +74,7 @@ const Casher = ({ cash, setCash }) => {
 
     const handleUpgradeMaxPaper = (newMax, cost) => {
         if (cash >= cost) {
-            setCash(prevCash => {
-                const newCash = prevCash - cost;
-                localStorage.setItem('cash', newCash);
-                return newCash;
-            });
+            setCash(prevCash => prevCash - cost);
             setMaxPaperCount(newMax);
         } else {
             console.log('Not enough cash to upgrade max paper.');
