@@ -12,7 +12,7 @@ const Casher = ({ userId }) => {
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch(`http://31.128.41.78:3000/api/user/461493836`);
+      const response = await fetch(`https://31.128.41.78:3000/api/user/461493836`);
       const data = await response.json();
       setCash(data.coins);
       setPaperCount(data.paper_volume);
@@ -24,7 +24,7 @@ const Casher = ({ userId }) => {
 
   const updateUserData = async (newCash, newPaperCount, newMaxPaperCount) => {
     try {
-      await fetch(`http://31.128.41.78:3000/api/user/461493836`, {
+      await fetch(`https://31.128.41.78:3000/api/user/461493836`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const Casher = ({ userId }) => {
   useEffect(() => {
     const interval = setInterval(async () => {
       try {
-        const response = await fetch(`http://31.128.41.78:3000/api/user/461493836`);
+        const response = await fetch(`https://31.128.41.78:3000/api/user/461493836`);
         if (response.ok) {
           const data = await response.json();
           // Only update the state if there has been no user action in the last second
