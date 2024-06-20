@@ -14,7 +14,7 @@ const Casher = ({ userId, cash, setCash }) => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await fetch(`http://31.128.41.78:3000/api/user/${userId}`);
+                const response = await fetch(`https://31.128.41.78:3000/api/user/${userId}`);
                 const data = await response.json();
                 setCash(data.coins);
                 setPaperCount(data.paper_volume);
@@ -43,7 +43,7 @@ const Casher = ({ userId, cash, setCash }) => {
     useEffect(() => {
         const updateUserData = async () => {
             try {
-                await fetch(`http://31.128.41.78:3000/api/user/${userId}`, {
+                await fetch(`https://31.128.41.78:3000/api/user/${userId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
