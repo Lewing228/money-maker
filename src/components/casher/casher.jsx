@@ -16,7 +16,7 @@ const Casher = ({ userId }) => {
         // Получение данных пользователя при загрузке компонента
         const fetchUserData = async () => {
             try {
-                const response = await fetch(`/api/user/${userId}`);
+                const response = await fetch(`http://31.128.41.78:3000/api/user/${userId}`);
                 const data = await response.json();
                 setCash(data.cash);
                 setPaperCount(data.paper_count);
@@ -44,7 +44,7 @@ const Casher = ({ userId }) => {
         // Обновление данных пользователя в базе данных
         const updateUserData = async () => {
             try {
-                await fetch(`/api/user/${userId}`, {
+                await fetch(`http://31.128.41.78:3000/api/user/${userId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
