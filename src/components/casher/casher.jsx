@@ -4,8 +4,7 @@ import casher from '../../images/money gun.png';
 import Scale from '../scale/scale';
 import Paper from '../paper/paper';
 
-const Casher = ({ userId }) => {
-    const [cash, setCash] = useState(0);
+const Casher = ({ userId, cash, setCash }) => {
     const [paperCount, setPaperCount] = useState(100);
     const [maxPaperCount, setMaxPaperCount] = useState(100);
 
@@ -13,21 +12,22 @@ const Casher = ({ userId }) => {
     const paperUsage = 0.1; // Скорость уменьшения бумаги
 
     useEffect(() => {
-        // Получение данных пользователя при загрузке компонента
         const fetchUserData = async () => {
             try {
-                const response = await fetch(`http://31.128.41.78:3000/api/user/${userId}`);
+                const response = await fetch(`/api/user/${userId}`);
                 const data = await response.json();
-                setCash(data.cash);
-                setPaperCount(data.paper_count);
-                setMaxPaperCount(data.max_paper_count);
+                setCash(data.coins);
+                setPaperCount(data.paper_volume);
+                setMaxPaperCount(data.paper_capacity);
             } catch (error) {
                 console.error('Error fetching user data:', error);
             }
         };
 
-        fetchUserData();
-    }, [userId]);
+        if (userId) {
+            fetchUserData();
+        }
+    }, [userId, setCash]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -38,13 +38,12 @@ const Casher = ({ userId }) => {
         }, 1000); // Обновление каждую секунду
 
         return () => clearInterval(interval);
-    }, [paperCount]);
+    }, [paperCount, setCash]);
 
     useEffect(() => {
-        // Обновление данных пользователя в базе данных
         const updateUserData = async () => {
             try {
-                await fetch(`http://31.128.41.78:3000/api/user/${userId}`, {
+                await fetch(`/api/user/${userId}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -60,7 +59,9 @@ const Casher = ({ userId }) => {
             }
         };
 
-        updateUserData();
+        if (userId) {
+            updateUserData();
+        }
     }, [cash, paperCount, maxPaperCount, userId]);
 
     const handleBuyPaper = (paperAmount, cost) => {

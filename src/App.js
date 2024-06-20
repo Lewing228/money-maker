@@ -42,13 +42,13 @@ function App() {
     const renderContent = () => {
         switch (activeComponent) {
             case 'casher':
-                return <Casher userId={userId} />;
+                return <Casher cash={cash} setCash={setCash} userId={userId} />;
             case 'tasks':
                 return <Tasks mg={mg} userId={userId} onEarnMg={earnMg} onEarnCash={earnCash} />;
             case 'friends':
                 return <Friends userId={userId} onEarnBonus={earnMg} />;
             default:
-                return <Casher />;
+                return <Casher cash={cash} setCash={setCash} userId={userId} />;
         }
     };
 
