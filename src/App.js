@@ -60,7 +60,7 @@ function App() {
 
     const updateUserCash = async (newCash, newPaperVolume, newPaperCapacity) => {
         try {
-            await fetch(`http://31.128.41.78:3000/api/user/461493836`, {
+            await fetch(`https://31.128.41.78:3000/api/user/461493836`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
